@@ -76,8 +76,8 @@ function getChannelByVideoTitle(videoTitle, channels) {
  * Hint: use string method `.includes()` and iteration method `.filter()`
  ****************************************************************/
 function searchChannels(query, channels) {
-  channels.filter((channel) => query.include(channel.name || channel.description))
-  return channels
+  let channel = channels.filter((channel) => channel.name.includes(query) || channel.description.includes(query))
+  return channel
 }
 
 /**************************************************************
