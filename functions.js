@@ -76,8 +76,11 @@ function getChannelByVideoTitle(videoTitle, channels) {
  * Hint: use string method `.includes()` and iteration method `.filter()`
  ****************************************************************/
 function searchChannels(query, channels) {
-  let channel = channels.filter((channel) => channel.name.includes(query) || channel.description.includes(query))
-  return channel
+  let channel = channels.filter(
+    (channel) =>
+      channel.name.includes(query) || channel.description.includes(query)
+  );
+  return channel;
 }
 
 /**************************************************************
@@ -88,7 +91,10 @@ function searchChannels(query, channels) {
  * BONUS: use iteration method `.reduce()`
  ****************************************************************/
 function totalVideosDuration(channel) {
-  // Your code here
+  return channel.videos.reduce(
+    (totalDuration, video) => totalDuration + video.duration,
+    0
+  );
 }
 
 /**************************************************************
@@ -100,7 +106,12 @@ function totalVideosDuration(channel) {
  * BONUS: use iteration method `.sort()`
  ****************************************************************/
 function channelWithMostContent(channels) {
-  // Your code here
+  let mostContentChannel = channels[0];
+  channels.forEach((channel) => {
+    if (totalVideosDuration(channel) > totalVideosDuration(mostContentChannel))
+      mostContentChannel = channel;
+  });
+  return mostContentChannel;
 }
 
 /**************************************************************
@@ -111,7 +122,12 @@ function channelWithMostContent(channels) {
  * BONUS: use iteration method `.sort()`
  ****************************************************************/
 function longestChannelName(channels) {
-  // Your code here
+  let channelWithLongestName = channels[0];
+  channels.forEach((channel) => {
+    if (channel.name.length > channelWithLongestName.name.length)
+      channelWithLongestName = channel;
+  });
+  return channelWithLongestName;
 }
 
 module.exports = {
